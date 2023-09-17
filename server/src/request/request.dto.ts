@@ -1,11 +1,20 @@
-import { IsString, IsDate, IsOptional, IsEnum } from 'class-validator';
+import { IsString, IsEmail, IsDate, IsOptional, IsEnum } from 'class-validator';
 
 export class RequestDTO {
     @IsString() 
-    readonly requesterId: string;
+    readonly agentId: string;
 
     @IsString() 
-    readonly agentId: string;
+    readonly firstName: string;
+
+    @IsString() 
+    readonly lastName: string;
+
+    @IsEmail() 
+    readonly email: string;
+
+    @IsString() 
+    readonly phone: string;
 
     @IsEnum(['find opportunity', 'improve situation'])
     readonly mainInterest: string;
