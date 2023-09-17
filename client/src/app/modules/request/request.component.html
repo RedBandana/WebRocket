@@ -1,0 +1,39 @@
+<h1>{{ userId ? 'Request Form - User ID: ' + userId : 'Request Form' }}</h1>
+
+<!-- Display success or error message -->
+<div *ngIf="successMessage">{{ successMessage }}</div>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+<form [formGroup]="requestForm">
+    <div>
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" formControlName="firstName" required />
+    </div>
+    <div>
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" formControlName="lastName" required />
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" required />
+    </div>
+    <div>
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" formControlName="phone" required />
+    </div>
+    <div>
+        <label for="mainInterest">Main Interest</label>
+        <select id="mainInterest" formControlName="mainInterest" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="find opportunity">Find Opportunity</option>
+            <option value="improve situation">Improve Situation</option>
+        </select>
+    </div>
+    <div>
+        <label for="introducedBy">Introduced By</label>
+        <input type="text" id="introducedBy" formControlName="introducedBy" />
+    </div>
+
+    <button type="button" (click)="join()" [disabled]="loading">Join</button>
+    <button type="button" (click)="clearMessage()">Clear Message</button>
+</form>

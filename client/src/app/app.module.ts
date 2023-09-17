@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './core/http/api.service';
+import { RequestModule } from './modules/request/request.module';
+import { UserModule } from './modules/user/user.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { ApiService } from './core/http/api.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RequestModule,
+    UserModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
