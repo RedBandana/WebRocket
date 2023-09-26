@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './core/http/api.service';
 import { RequestModule } from './modules/request/request.module';
 import { UserModule } from './modules/user/user.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { UserModule } from './modules/user/user.module';
     HttpClientModule,
     RequestModule,
     UserModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
