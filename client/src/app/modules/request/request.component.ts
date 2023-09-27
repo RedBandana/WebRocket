@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/core/http/api.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { startCreateRequest } from '../../actions/request.actions';
+import { RequestState } from '../../states/request.state';
+import { User } from 'src/app/models/user.model';
+import { UserState } from 'src/app/states/user.state';
+import { Request } from 'src/app/models/request.model';
+import { startGetUser } from 'src/app/actions/user.actions';
 
 @Component({
   selector: 'app-request',
@@ -10,6 +17,14 @@ import { ApiService } from 'src/app/core/http/api.service';
 })
 
 export class RequestComponent implements OnInit {
+  user$: Observable<User | undefined>;
+  userLoading$: Observable<boolean>;
+  userError$: Observable<any>;
+
+  request$: Observable<Request | undefined>;
+  requestLoading$: Observable<boolean>;
+  requestError$: Observable<any>;
+
   requestForm: FormGroup;
   userId: string = '';
   loading: boolean = false;
@@ -19,8 +34,16 @@ export class RequestComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private apiService: ApiService
+    private store: Store<{ user: UserState, request: RequestState }>
   ) {
+    this.user$ = store.select((state) => state.user.user);
+    this.userLoading$ = store.select((state) => state.user.loading);
+    this.userError$ = store.select((state) => state.user.error);
+
+    this.request$ = store.select((state) => state.request.request);
+    this.requestLoading$ = store.select((state) => state.request.loading);
+    this.requestError$ = store.select((state) => state.request.error);
+
     this.requestForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -33,6 +56,9 @@ export class RequestComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('userId') ?? '';
+    if (this.userId !== '') {
+      this.store.dispatch(startGetUser({ userId: this.userId }));
+    }
   }
 
   join(): void {
@@ -53,22 +79,6 @@ export class RequestComponent implements OnInit {
       introducedBy: this.requestForm.value.introducedBy
     };
 
-    this.apiService.postData(`apiUrl/request`, request).subscribe({
-      complete: () => {
-        this.loading = false;
-        this.successMessage = 'Request created successfully.';
-        this.requestForm.reset();
-      },
-      error: (error: any) => {
-        this.loading = false;
-        this.errorMessage = 'Failed to create request. Please try again.';
-        console.error(error);
-      }
-    });
-  }
-
-  clearMessage(): void {
-    this.successMessage = '';
-    this.errorMessage = '';
+    this.store.dispatch(startCreateRequest({ request: request}));
   }
 }

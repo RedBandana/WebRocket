@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
   users$: Observable<User[]>;
   loading$: Observable<boolean>;
   error$: Observable<any>;
+  
   constructor(private store: Store<{user: UserState}>) {
     this.users$ = store.select((state) => state.user.users);
     this.loading$ = store.select((state) => state.user.loading);

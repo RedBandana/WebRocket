@@ -1,11 +1,11 @@
 export class User {
-    _id: string = ''; // unique identifier
+    _id?: string = '';
     firstName: string = '';
     lastName: string = '';
     email: string = '';
     phone: string = '';
     type: UserType = UserType.GUEST;
-    timeCreated: Date = new Date();
+    timeCreated?: Date = new Date();
     password: string = ''; 
 }
 

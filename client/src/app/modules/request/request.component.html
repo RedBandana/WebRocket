@@ -46,19 +46,24 @@
         </div>
 
         <button class="requestSubmit" type="button" (click)="join()" [disabled]="loading">Join</button>
-        <button class="hide" type="button" (click)="clearMessage()">Clear Message</button>
         
         <!-- Display success or error message -->
-        <div class="requestNotif requestNotifError">
+        <div class="requestNotif requestNotifError" *ngIf="requestError$ | async as error">
+            <div class="requestNotifIcon">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="requestNotifText">
+                {{ error.message }}
+            </div>
+        </div>
+        <div class="requestNotif requestNotifSuccess" *ngIf="successMessage">
             <div class="requestNotifIcon">
                 <i class="fa-regular fa-circle-check"></i>
             </div>
             <div class="requestNotifText">
-                An agent will contact you in the next 24&nbsp;h.
+                {{ successMessage }}
             </div>
         </div>
-        <div class="requestNotif requestNotifSuccess" *ngIf="successMessage">{{ successMessage }}</div>
-        <div class="requestNotif requestNotifError" *ngIf="errorMessage">{{ errorMessage }}</div>
 
         <div class="requestFooter">
             Terms of use | Privacy policy

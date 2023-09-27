@@ -13,7 +13,19 @@ export class UserEffects {
       ofType(UserActions.startGetUsers),
       mergeMap(() =>
         this.userService.getUsers().pipe(
-          map((users) => UserActions.getUsersSuccess({ users: users as User[] })),
+          map((payload) => UserActions.getUsersSuccess({ users: payload as User[] })),
+          catchError((error) => of(UserActions.getUsersFailure({ error })))
+        )
+      )
+    )
+  );
+
+  getUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.startGetUser),
+      mergeMap((action) =>
+        this.userService.getUser(action.userId).pipe(
+          map((payload) => UserActions.getUserSuccess({ user: payload as User })),
           catchError((error) => of(UserActions.getUsersFailure({ error })))
         )
       )
