@@ -51,7 +51,6 @@ $requestContainer-max-width: 450px;
         background-color: $color-second;
         max-width: $requestContainer-max-width;
         padding: 5px;
-        margin-top: $margin-main;
 
         .requestNotifIcon {
             margin: 0 5px;
@@ -62,7 +61,7 @@ $requestContainer-max-width: 450px;
     .requestNotifError {
         background-color: $color-error;
     }
-    
+
     .requestForm {
         display: flex;
         flex-direction: column;
@@ -75,16 +74,6 @@ $requestContainer-max-width: 450px;
                 margin-bottom: 5px;
             }
 
-            input {
-                width: calc(100% - 7px);
-                height: $input-height;
-            }
-
-            select {
-                width: 100%;
-                height: calc($input-height + 2px);
-            }
-
             input,
             select {
                 padding-left: 5px;
@@ -94,6 +83,22 @@ $requestContainer-max-width: 450px;
                 color: $text-color-main;
                 font-size: 1rem;
                 font-family: $font-family;
+            }
+
+            input {
+                width: calc(100% - 7px);
+                height: $input-height;
+            }
+
+            input:focus,
+            select:focus {
+                outline: none !important;
+                box-shadow: 0 0 10px $color-second;
+            }
+
+            select {
+                width: 100%;
+                height: calc($input-height + 2px);
             }
         }
 
@@ -108,19 +113,8 @@ $requestContainer-max-width: 450px;
             background-color: $text-color-main;
             margin-top: $margin-main;
 
-
-            &:first-child {
-                background-color: #007bFF;
-                margin-bottom: 10px;
-            }
-
-            &:last-child {
-                background-color: #6c757d;
-            }
-
             &:disabled {
-                background-color: #ccc;
-                cursor: not-allowed;
+                cursor: default;
             }
         }
 
@@ -128,6 +122,12 @@ $requestContainer-max-width: 450px;
             margin-top: $margin-second;
             display: flex;
             justify-content: center;
+        }
+    }
+
+    .requestFooter {
+        a {
+            margin: 0 5px;
         }
     }
 }

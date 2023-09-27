@@ -2,7 +2,8 @@ import { IsString, IsEmail, IsDate, IsOptional, IsEnum } from 'class-validator';
 
 export class RequestDTO {
     @IsString() 
-    readonly agentId: string;
+    @IsOptional() 
+    readonly agentId?: string;
 
     @IsString() 
     readonly firstName: string;

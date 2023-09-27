@@ -1,6 +1,6 @@
 export class Request {
   _id?: string = '';
-  agentId: string = '';
+  agentId?: string = '';
   firstName: string = '';
   lastName: string = '';
   email: string = '';

@@ -45,15 +45,21 @@
             </select>
         </div>
 
-        <button class="requestSubmit" type="button" (click)="join()" [disabled]="loading">Join</button>
-        
+        <button class="requestSubmit" type="button" (click)="join()" [disabled]="requestLoading || userLoading">Join</button>
+
+        <div class="loadingIndicator" [ngClass]="{'hide': !requestLoading && !userLoading}">
+            <div class="loadingBar"></div>
+        </div>
+
         <!-- Display success or error message -->
-        <div class="requestNotif requestNotifError" *ngIf="requestError$ | async as error">
+        <div class="requestNotif requestNotifError" *ngIf="requestError || userError || errorMessage">
             <div class="requestNotifIcon">
                 <i class="fa-regular fa-circle-xmark"></i>
             </div>
             <div class="requestNotifText">
-                {{ error.message }}
+                {{ errorMessage }}
+                {{ requestError }}
+                {{ userError }}
             </div>
         </div>
         <div class="requestNotif requestNotifSuccess" *ngIf="successMessage">
@@ -66,7 +72,7 @@
         </div>
 
         <div class="requestFooter">
-            Terms of use | Privacy policy
+            <a href="/terms-of-use" target="_blank">Terms of use </a> | <a href="/privacy-policy" target="_blank">Privacy policy</a>
         </div>
     </form>
 </div>

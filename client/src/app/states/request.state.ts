@@ -1,7 +1,7 @@
 import { Request } from "../models/request.model";
 
 export interface RequestState {
-    request: Request;
+    request?: Request;
     loading: boolean;
     error: any;
 }

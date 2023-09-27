@@ -3,7 +3,7 @@ import { UserState } from '../states/user.state';
 import * as UserActions from '../actions/user.actions';
 
 export const initialState: UserState = {
-  user: null,
+  user: undefined,
   users: [],
   loading: false,
   error: null,

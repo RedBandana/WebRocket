@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 
 export interface Request extends Document {
-    agentId: string;
+    agentId?: string;
     firstName: string;
     lastName: string;
     email: string;

@@ -3,12 +3,12 @@ import { RequestState } from '../states/request.state';
 import * as RequestActions from '../actions/request.actions';
 
 export const initialState: RequestState = {
-  request: null,
+  request: undefined,
   loading: false,
   error: null,
 };
 
-export const userReducer = createReducer(
+export const requestReducer = createReducer(
   initialState,
   on(RequestActions.startCreateRequest, (state) => ({
     ...state,

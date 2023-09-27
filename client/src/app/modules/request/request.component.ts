@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { startCreateRequest } from '../../actions/request.actions';
 import { RequestState } from '../../states/request.state';
 import { User } from 'src/app/models/user.model';
@@ -16,18 +16,19 @@ import { startGetUser } from 'src/app/actions/user.actions';
   styleUrls: ['./request.component.scss']
 })
 
-export class RequestComponent implements OnInit {
-  user$: Observable<User | undefined>;
-  userLoading$: Observable<boolean>;
-  userError$: Observable<any>;
+export class RequestComponent implements OnInit, OnDestroy {
+  user?: User;
+  userError: any = null;
+  userLoading: boolean = false;
+  private userSubscription!: Subscription;
 
-  request$: Observable<Request | undefined>;
-  requestLoading$: Observable<boolean>;
-  requestError$: Observable<any>;
+  request?: Request;
+  requestError: any = null;
+  requestLoading: boolean = false;
+  private requestSubscription!: Subscription;
 
   requestForm: FormGroup;
   userId: string = '';
-  loading: boolean = false;
   successMessage: string = '';
   errorMessage: string = '';
 
@@ -36,13 +37,6 @@ export class RequestComponent implements OnInit {
     private formBuilder: FormBuilder,
     private store: Store<{ user: UserState, request: RequestState }>
   ) {
-    this.user$ = store.select((state) => state.user.user);
-    this.userLoading$ = store.select((state) => state.user.loading);
-    this.userError$ = store.select((state) => state.user.error);
-
-    this.request$ = store.select((state) => state.request.request);
-    this.requestLoading$ = store.select((state) => state.request.loading);
-    this.requestError$ = store.select((state) => state.request.error);
 
     this.requestForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -55,21 +49,39 @@ export class RequestComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userSubscription = this.store.select(state => state.user)
+      .subscribe(userState => {
+        this.user = userState.user;
+        this.userLoading = userState.loading;
+        this.userError = userState.error;
+      });
+
+    this.requestSubscription = this.store.select(state => state.request)
+      .subscribe(requestState => {
+        this.request = requestState.request;
+        this.requestLoading = requestState.loading;
+        this.requestError = requestState.error;
+      });
+
     this.userId = this.route.snapshot.paramMap.get('userId') ?? '';
     if (this.userId !== '') {
       this.store.dispatch(startGetUser({ userId: this.userId }));
     }
   }
 
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
+    this.requestSubscription.unsubscribe();
+  }
+
   join(): void {
     if (this.requestForm.invalid) {
-      this.errorMessage = 'Form is invalid.'
+      this.errorMessage = 'Form is invalid.';
       return;
     }
+    this.errorMessage = '';
 
-    this.loading = true;
-
-    const request = {
+    const request: any = {
       agentId: this.userId,
       firstName: this.requestForm.value.firstName,
       lastName: this.requestForm.value.lastName,
@@ -79,6 +91,10 @@ export class RequestComponent implements OnInit {
       introducedBy: this.requestForm.value.introducedBy
     };
 
-    this.store.dispatch(startCreateRequest({ request: request}));
+    if (request.agentId === '') {
+      delete request.agentId;
+    }
+
+    this.store.dispatch(startCreateRequest({ request: request }));
   }
 }

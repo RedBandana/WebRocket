@@ -1,7 +1,7 @@
 import { User } from "../models/user.model";
 
 export interface UserState {
-    user: User;
+    user?: User;
     users: User[];
     loading: boolean;
     error: any;
