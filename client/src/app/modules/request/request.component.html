@@ -1,39 +1,67 @@
-<h1>{{ userId ? 'Request Form - User ID: ' + userId : 'Request Form' }}</h1>
+<div class="requestContainer">
+    <div class="requestAgent">
+        <div class="requestAgentProfile">
 
-<!-- Display success or error message -->
-<div *ngIf="successMessage">{{ successMessage }}</div>
-<div *ngIf="errorMessage">{{ errorMessage }}</div>
-
-<form [formGroup]="requestForm">
-    <div>
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" formControlName="firstName" required />
-    </div>
-    <div>
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" formControlName="lastName" required />
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" formControlName="email" required />
-    </div>
-    <div>
-        <label for="phone">Phone</label>
-        <input type="text" id="phone" formControlName="phone" required />
-    </div>
-    <div>
-        <label for="mainInterest">Main Interest</label>
-        <select id="mainInterest" formControlName="mainInterest" required>
-            <option value="" disabled selected>Select an option</option>
-            <option value="find opportunity">Find Opportunity</option>
-            <option value="improve situation">Improve Situation</option>
-        </select>
-    </div>
-    <div>
-        <label for="introducedBy">Introduced By</label>
-        <input type="text" id="introducedBy" formControlName="introducedBy" />
+        </div>
+        <h1 class="requestAgentName">
+            Maxime Boucher
+        </h1>
+        <h2 class="requestAgentDescription">
+            We lead, inspire and help others go into business for themselves.
+        </h2>
     </div>
 
-    <button type="button" (click)="join()" [disabled]="loading">Join</button>
-    <button type="button" (click)="clearMessage()">Clear Message</button>
-</form>
+    <div class="requestTitle">
+        <h1>{{ userId ? 'Request Form - User ID: ' + userId : 'Join Rocket Team' }}</h1>
+    </div>
+
+    <form class="requestForm" [formGroup]="requestForm">
+        <div class="requestField">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" formControlName="firstName" required />
+        </div>
+        <div class="requestField">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" formControlName="lastName" required />
+        </div>
+        <div class="requestField">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" required />
+        </div>
+        <div class="requestField">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" formControlName="phone" required />
+        </div>
+        <div class="requestField">
+            <label for="introducedBy">Introduced by</label>
+            <input type="text" id="introducedBy" formControlName="introducedBy" />
+        </div>
+        <div class="requestField">
+            <label for="mainInterest">Main interest</label>
+            <select id="mainInterest" formControlName="mainInterest" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="find opportunity" selected>Find a business opportunity</option>
+                <option value="improve situation">Improve my financial situation</option>
+            </select>
+        </div>
+
+        <button class="requestSubmit" type="button" (click)="join()" [disabled]="loading">Join</button>
+        <button class="hide" type="button" (click)="clearMessage()">Clear Message</button>
+        
+        <!-- Display success or error message -->
+        <div class="requestNotif requestNotifError">
+            <div class="requestNotifIcon">
+                <i class="fa-regular fa-circle-check"></i>
+            </div>
+            <div class="requestNotifText">
+                An agent will contact you in the next 24&nbsp;h.
+            </div>
+        </div>
+        <div class="requestNotif requestNotifSuccess" *ngIf="successMessage">{{ successMessage }}</div>
+        <div class="requestNotif requestNotifError" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+        <div class="requestFooter">
+            Terms of use | Privacy policy
+        </div>
+    </form>
+</div>

@@ -1,0 +1,133 @@
+@import '../../../variables.scss';
+
+$requestContainer-border-radius: 10px;
+$requestContainer-max-width: 450px;
+
+
+.requestContainer {
+    background-color: $background-color;
+    padding: 20px;
+    border-radius: $requestContainer-border-radius;
+    margin: auto;
+    max-width: $requestContainer-max-width;
+
+    .requestAgent {
+        text-align: center;
+
+        .requestAgentProfile {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background-color: $text-color-main;
+            margin: auto;
+        }
+
+        .requestAgentName {
+            font-size: 1.75rem;
+        }
+
+        .requestAgentDescription {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+
+        margin-bottom: $margin-second;
+    }
+
+    .requestTitle {
+        margin-bottom: $margin-second;
+        text-align: center;
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    .requestNotif {
+        border-radius: $radius-main;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $color-second;
+        max-width: $requestContainer-max-width;
+        padding: 5px;
+        margin-top: $margin-main;
+
+        .requestNotifIcon {
+            margin: 0 5px;
+            padding-right: 5px;
+        }
+    }
+
+    .requestNotifError {
+        background-color: $color-error;
+    }
+    
+    .requestForm {
+        display: flex;
+        flex-direction: column;
+
+        .requestField {
+            margin-bottom: $margin-main;
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input {
+                width: calc(100% - 7px);
+                height: $input-height;
+            }
+
+            select {
+                width: 100%;
+                height: calc($input-height + 2px);
+            }
+
+            input,
+            select {
+                padding-left: 5px;
+                border: $border-main;
+                border-radius: $radius-main;
+                background-color: $background-color;
+                color: $text-color-main;
+                font-size: 1rem;
+                font-family: $font-family;
+            }
+        }
+
+        .requestSubmit {
+            height: $button-height;
+            border: none;
+            border-radius: $radius-main;
+            color: $text-color-second;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            background-color: $text-color-main;
+            margin-top: $margin-main;
+
+
+            &:first-child {
+                background-color: #007bFF;
+                margin-bottom: 10px;
+            }
+
+            &:last-child {
+                background-color: #6c757d;
+            }
+
+            &:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+            }
+        }
+
+        .requestFooter {
+            margin-top: $margin-second;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
