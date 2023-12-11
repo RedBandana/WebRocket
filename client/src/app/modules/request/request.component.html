@@ -1,4 +1,10 @@
 <div class="requestContainer">
+    
+    <select class="language-switcher" [(ngModel)]="selectedLanguage" (change)="changeLanguage($event)">
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+    </select>
+
     <div class="requestAgent">
         <div class="requestAgentProfile">
 
@@ -45,7 +51,8 @@
             </select>
         </div>
 
-        <button class="requestSubmit" type="button" (click)="join()" [disabled]="requestLoading || userLoading">Join</button>
+        <button class="requestSubmit" type="button" (click)="join()"
+            [disabled]="requestLoading || userLoading">{{ 'joinFormSubmit' | translate }}</button>
 
         <div class="loadingIndicator" [ngClass]="{'hide': !requestLoading && !userLoading}">
             <div class="loadingBar"></div>
@@ -72,7 +79,8 @@
         </div>
 
         <div class="requestFooter">
-            <a href="/terms-of-use" target="_blank">Terms of use </a> | <a href="/privacy-policy" target="_blank">Privacy policy</a>
+            <a href="/terms-of-use" target="_blank">Terms of use </a> | <a href="/privacy-policy"
+                target="_blank">Privacy policy</a>
         </div>
     </form>
 </div>

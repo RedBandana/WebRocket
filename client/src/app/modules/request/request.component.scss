@@ -11,6 +11,38 @@ $requestContainer-max-width: 450px;
     margin: auto;
     max-width: $requestContainer-max-width;
 
+    .language-switcher {
+        float: right;
+        background: white;       // white background
+        border: none; // black border
+        padding: 0.5em 1em;      // internal spacing for text
+        margin: 10px 0;          // larger margin
+        border-radius: 4px;      // rounded corners
+        font-size: 1rem;         // readable text size
+        font-family: $font-family;
+        cursor: pointer;         // indicate it's selectable
+        
+        // For modern browsers to remove the default arrow, you might need vendor prefixes
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+  
+        // Add some padding to the right of the select for the custom arrow
+        padding-right: 2em; 
+  
+        // Custom arrow indicator (optional)
+        background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L1 4H11L6 9Z" fill="black"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 0.7em center; // position the arrow to the right with centered vertically
+        background-size: 12px 12px; // size of the arrow
+      }
+  
+      // If you would like to style the options as well
+      .language-switcher option {
+        background: white; // options background
+        color: black;      // options text color
+      }
+
     .requestAgent {
         text-align: center;
 

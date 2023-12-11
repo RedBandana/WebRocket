@@ -8,8 +8,8 @@ import { UserEffects } from 'src/app/effects/user.effects';
 import { RequestEffects } from 'src/app/effects/request.effect';
 import { requestReducer } from 'src/app/reducers/request.reducer';
 import { userReducer } from 'src/app/reducers/user.reducer';
-
-
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,10 +17,12 @@ import { userReducer } from 'src/app/reducers/user.reducer';
   ],
   imports: [
     CommonModule,
+    TranslateModule.forChild(), // Use forChild() in feature modules
     ReactiveFormsModule,
     StoreModule.forFeature('request', requestReducer),
     StoreModule.forFeature('user', userReducer),
-    EffectsModule.forFeature([RequestEffects, UserEffects])
+    EffectsModule.forFeature([RequestEffects, UserEffects]),
+    FormsModule
   ]
 })
 export class RequestModule { }
