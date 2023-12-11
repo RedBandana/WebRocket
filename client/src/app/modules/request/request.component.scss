@@ -52,6 +52,7 @@ $requestContainer-max-width: 450px;
             border-radius: 50%;
             background-color: $text-color-main;
             margin: auto;
+            border: 1px solid $text-color-main;
 
             img {
                 width: 100%;
@@ -68,6 +69,8 @@ $requestContainer-max-width: 450px;
         .requestAgentDescription {
             font-size: 1rem;
             font-weight: normal;
+            width: 300px;
+            margin: auto;
         }
 
         margin-bottom: $margin-second;

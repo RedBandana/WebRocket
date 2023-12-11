@@ -1,64 +1,66 @@
 <div class="requestContainer">
-    
+
     <select class="language-switcher" [(ngModel)]="selectedLanguage" (change)="changeLanguage($event)">
-        <option value="en">EN</option>
-        <option value="fr">FR</option>
+        <option value="en">{{ 'languageSelectorEN' | translate }}</option>
+        <option value="fr">{{ 'languageSelectorFR' | translate }}</option>
     </select>
 
     <div class="requestAgent">
         <div class="requestAgentProfile">
-            <img [src]="user?.profilepictureurl">
+            <div *ngIf="user; else rocketlogo">
+                <img [src]="user.profilepictureurl" alt="{{ 'agentPicture' | translate }}">
+            </div>
+            <ng-template #rocketlogo>
+                <img src="https://i.ibb.co/1dmn5Xn/logo.jpg" alt="{{ 'companyLogo' | translate }}">
+            </ng-template>
         </div>
-        
+
         <h2 *ngIf="user; else rocket">{{ user.firstName }} {{ user.lastName }}</h2>
         <ng-template #rocket>
             <h2 class="requestAgentName">
-                Laurent Belanger
+                .
             </h2>
         </ng-template>
-        
-        <h2 class="requestAgentDescription">
-            We lead, inspire and help others go into business for themselves.
-        </h2>
+
+        <h2 class="requestAgentDescription">{{ 'agentDescription' | translate }}</h2>
     </div>
 
     <div class="requestTitle">
-        <h1>Join Rocket Team</h1>
+        <h1>{{ 'contactUs' | translate }}</h1>
     </div>
-
 
     <form class="requestForm" [formGroup]="requestForm">
         <div class="requestField" [ngClass]="{'error': requestForm.get('firstName')?.touched && requestForm.get('firstName')?.invalid}">
-            <label for="firstName">First name</label>
+            <label for="firstName">{{ 'firstNameLabel' | translate }}</label>
             <input type="text" id="firstName" formControlName="firstName" required />
         </div>
         <div class="requestField" [ngClass]="{'error': requestForm.get('lastName')?.touched && requestForm.get('lastName')?.invalid}">
-            <label for="lastName">Last name</label>
+            <label for="lastName">{{ 'lastNameLabel' | translate }}</label>
             <input type="text" id="lastName" formControlName="lastName" required />
         </div>
         <div class="requestField" [ngClass]="{'error': requestForm.get('email')?.touched && requestForm.get('email')?.invalid}">
-            <label for="email">Email</label>
+            <label for="email">{{ 'emailLabel' | translate }}</label>
             <input type="email" id="email" formControlName="email" required />
         </div>
         <div class="requestField" [ngClass]="{'error': requestForm.get('phone')?.touched && requestForm.get('phone')?.invalid}">
-            <label for="phone">Phone</label>
+            <label for="phone">{{ 'phoneLabel' | translate }}</label>
             <input type="tel" pattern="^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" id="phone" formControlName="phone" required />
         </div>
         <div class="requestField" [ngClass]="{'error': requestForm.get('introducedBy')?.touched && requestForm.get('introducedBy')?.invalid}">
-            <label for="introducedBy">Introduced by</label>
+            <label for="introducedBy">{{ 'introducedByLabel' | translate }}</label>
             <input type="text" id="introducedBy" formControlName="introducedBy" />
         </div>
         <div class="requestField" [ngClass]="{'error': requestForm.get('mainInterest')?.touched && requestForm.get('mainInterest')?.invalid}">
-            <label for="mainInterest">Main interest</label>
+            <label for="mainInterest">{{ 'mainInterestLabel' | translate }}</label>
             <select id="mainInterest" formControlName="mainInterest" required>
-                <option value="" disabled selected>Select an option</option>
-                <option value="find opportunity" selected>Find a business opportunity</option>
-                <option value="improve situation">Improve my financial situation</option>
+                <option value="" disabled selected>{{ 'optionSelect' | translate }}</option>
+                <option value="find opportunity" selected>{{ 'optionBusinessOpportunity' | translate }}</option>
+                <option value="improve situation">{{ 'optionFinancialSituation' | translate }}</option>
             </select>
         </div>
 
-        <button class="requestSubmit" type="button" (click)="join()"
-            [disabled]="requestLoading || userLoading">{{ 'joinFormSubmit' | translate }}</button>
+        <button class="requestSubmit" type="button" (click)="join()" 
+        [disabled]="requestLoading || userLoading">{{ 'joinFormSubmit' | translate }}</button>
 
         <div class="loadingIndicator" [ngClass]="{'hide': !requestLoading && !userLoading}">
             <div class="loadingBar"></div>
@@ -69,24 +71,26 @@
             <div class="requestNotifIcon">
                 <i class="fa-regular fa-circle-xmark"></i>
             </div>
-            <div class="requestNotifText">
+            <div *ngIf="errorMessage; else generalError" class="requestNotifText">
                 {{ errorMessage }}
-                {{ requestError }}
-                {{ userError }}
             </div>
+            <ng-template #generalError>
+                <div *ngIf="requestError || userError" class="requestNotifText">
+                    {{ 'errorGeneral' | translate }}
+                </div>
+            </ng-template>
         </div>
         <div class="requestNotif requestNotifSuccess" *ngIf="request && !errorMessage">
             <div class="requestNotifIcon">
                 <i class="fa-regular fa-circle-check"></i>
             </div>
-            <div class="requestNotifText">
-                An agent will contact you in the next 24&nbsp;h.
-            </div>
+            <div class="requestNotifText">{{ 'successMessage' | translate }}</div>
         </div>
 
+        <!-- Footer links to legal documents -->
         <div class="requestFooter">
-            <a href="/terms-of-use" target="_blank">Terms of use </a> | <a href="/privacy-policy"
-                target="_blank">Privacy policy</a>
+            <a href="/terms-of-use" target="_blank">{{ 'termsOfUse' | translate }}</a> | <a href="/privacy-policy"
+                target="_blank">{{ 'privacyPolicy' | translate }}</a>
         </div>
     </form>
 </div>

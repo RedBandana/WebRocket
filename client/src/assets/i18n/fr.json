@@ -1,4 +1,23 @@
 {
-    "joinFormTitle": "Rejoindre l'équipe Rocket",
-    "joinFormSubmit": "Rejoindre"
-}
+    "languageSelectorEN": "EN",
+    "languageSelectorFR": "FR",
+    "agentDescription": "Nous guidons, inspirons et aidons les autres à se lancer en affaires.",
+    "contactUs": "Contactez-nous",
+    "firstNameLabel": "Prénom",
+    "lastNameLabel": "Nom",
+    "emailLabel": "Courriel",
+    "phoneLabel": "Téléphone",
+    "introducedByLabel": "Présenté par",
+    "mainInterestLabel": "Intérêt principal",
+    "optionSelect": "Sélectionnez une option",
+    "optionBusinessOpportunity": "Trouver une opportunité d'affaires",
+    "optionFinancialSituation": "Améliorer ma situation financière",
+    "joinFormSubmit": "Rejoindre",
+    "errorMessage": "Une erreur s'est produite, veuillez réessayer plus tard.",
+    "successMessage": "Un agent vous contactera dans les 24 heures suivantes.",
+    "termsOfUse": "Conditions d'utilisation",
+    "privacyPolicy": "Politique de confidentialité",
+    "formInvalid": "Le formulaire est invalide.",
+    "errorGeneral": "Un problème est survenue. Veuillez réessayer plus tard."
+  }
+  

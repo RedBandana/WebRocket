@@ -1,4 +1,23 @@
 {
-    "joinFormTitle": "Join Rocket Team",
-    "joinFormSubmit": "Join"
-}
+    "languageSelectorEN": "EN",
+    "languageSelectorFR": "FR",
+    "agentDescription": "We lead, inspire and help others go into business for themselves.",
+    "contactUs": "Contact Us",
+    "firstNameLabel": "First name",
+    "lastNameLabel": "Last name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "introducedByLabel": "Introduced by",
+    "mainInterestLabel": "Main interest",
+    "optionSelect": "Select an option",
+    "optionBusinessOpportunity": "Find a business opportunity",
+    "optionFinancialSituation": "Improve my financial situation",
+    "joinFormSubmit": "Join",
+    "errorMessage": "An error occurred, please try again later.",
+    "successMessage": "An agent will contact you in the next 24 hours.",
+    "termsOfUse": "Terms of use",
+    "privacyPolicy": "Privacy policy",
+    "formInvalid": "Form is invalid.",
+    "errorGeneral": "Something went wrong. Please try again later."
+  }
+  

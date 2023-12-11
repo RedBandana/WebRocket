@@ -103,7 +103,9 @@ export class RequestComponent implements OnInit, OnDestroy {
 
   join(): void {
     if (this.requestForm.invalid) {
-      this.errorMessage = 'Form is invalid.';
+      this.translate.get('formInvalid').subscribe((res: string) => {
+        this.errorMessage = res;
+      });
       return;
     }
     this.errorMessage = '';
