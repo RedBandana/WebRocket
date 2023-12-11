@@ -4,6 +4,7 @@ export class User {
     lastName: string = '';
     email: string = '';
     phone: string = '';
+    profilepictureurl: string = '';
     type: UserType = UserType.GUEST;
     timeCreated?: Date = new Date();
     password: string = ''; 

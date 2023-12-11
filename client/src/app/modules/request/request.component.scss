@@ -52,6 +52,13 @@ $requestContainer-max-width: 450px;
             border-radius: 50%;
             background-color: $text-color-main;
             margin: auto;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
         }
 
         .requestAgentName {
@@ -98,6 +105,12 @@ $requestContainer-max-width: 450px;
     .requestForm {
         display: flex;
         flex-direction: column;
+
+        .requestField.error input,
+        .requestField.error select {
+            border: 1px solid $color-input-error;
+            box-shadow: 0px 0px 3px $color-input-error;
+        }
 
         .requestField {
             margin-bottom: $margin-main;

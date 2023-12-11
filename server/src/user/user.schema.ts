@@ -6,6 +6,7 @@ export const UserSchema = new Schema({
     lastName: String,
     email: { type: String, unique: true },
     phone: String,
+    profilepictureurl: String,
     password: String,
     type: {
         type: String,

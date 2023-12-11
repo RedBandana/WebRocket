@@ -5,6 +5,7 @@ export interface User extends Document {
     lastName: string;
     email: string;
     phone: string;
+    profilepictureurl: string;
     password: string;
     type: 'guest' | 'requester' | 'agent' | 'administrator';
     timeCreated?: Date;

@@ -7,42 +7,48 @@
 
     <div class="requestAgent">
         <div class="requestAgentProfile">
-
+            <img [src]="user?.profilepictureurl">
         </div>
-        <h1 class="requestAgentName">
-            Maxime Boucher
-        </h1>
+        
+        <h2 *ngIf="user; else rocket">{{ user.firstName }} {{ user.lastName }}</h2>
+        <ng-template #rocket>
+            <h2 class="requestAgentName">
+                Laurent Belanger
+            </h2>
+        </ng-template>
+        
         <h2 class="requestAgentDescription">
             We lead, inspire and help others go into business for themselves.
         </h2>
     </div>
 
     <div class="requestTitle">
-        <h1>{{ userId ? 'Request Form - User ID: ' + userId : 'Join Rocket Team' }}</h1>
+        <h1>Join Rocket Team</h1>
     </div>
 
+
     <form class="requestForm" [formGroup]="requestForm">
-        <div class="requestField">
+        <div class="requestField" [ngClass]="{'error': requestForm.get('firstName')?.touched && requestForm.get('firstName')?.invalid}">
             <label for="firstName">First name</label>
             <input type="text" id="firstName" formControlName="firstName" required />
         </div>
-        <div class="requestField">
+        <div class="requestField" [ngClass]="{'error': requestForm.get('lastName')?.touched && requestForm.get('lastName')?.invalid}">
             <label for="lastName">Last name</label>
             <input type="text" id="lastName" formControlName="lastName" required />
         </div>
-        <div class="requestField">
+        <div class="requestField" [ngClass]="{'error': requestForm.get('email')?.touched && requestForm.get('email')?.invalid}">
             <label for="email">Email</label>
             <input type="email" id="email" formControlName="email" required />
         </div>
-        <div class="requestField">
+        <div class="requestField" [ngClass]="{'error': requestForm.get('phone')?.touched && requestForm.get('phone')?.invalid}">
             <label for="phone">Phone</label>
-            <input type="text" id="phone" formControlName="phone" required />
+            <input type="tel" pattern="^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" id="phone" formControlName="phone" required />
         </div>
-        <div class="requestField">
+        <div class="requestField" [ngClass]="{'error': requestForm.get('introducedBy')?.touched && requestForm.get('introducedBy')?.invalid}">
             <label for="introducedBy">Introduced by</label>
             <input type="text" id="introducedBy" formControlName="introducedBy" />
         </div>
-        <div class="requestField">
+        <div class="requestField" [ngClass]="{'error': requestForm.get('mainInterest')?.touched && requestForm.get('mainInterest')?.invalid}">
             <label for="mainInterest">Main interest</label>
             <select id="mainInterest" formControlName="mainInterest" required>
                 <option value="" disabled selected>Select an option</option>

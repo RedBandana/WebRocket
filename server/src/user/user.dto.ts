@@ -14,6 +14,9 @@ export class UserDTO {
     readonly phone: string;
 
     @IsString() 
+    readonly profilepictureurl: string;
+
+    @IsString() 
     readonly password: string;
 
     @IsEnum(['guest', 'requester', 'agent', 'administrator']) 

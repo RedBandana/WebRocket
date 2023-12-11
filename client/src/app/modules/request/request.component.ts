@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { startCreateRequest } from '../../actions/request.actions';
 import { RequestState } from '../../states/request.state';
 import { User } from 'src/app/models/user.model';
@@ -49,7 +49,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     const queryParams = new URLSearchParams(window.location.search);
     const lang = queryParams.get('lang') ?? "en";
     this.translate.use(lang);
-    
+
     this.requestForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -66,11 +66,22 @@ export class RequestComponent implements OnInit, OnDestroy {
       this.translate.use(this.selectedLanguage);
     });
 
+    this.route.queryParams.subscribe((params: Params) => {
+      this.userId = params['agent'] || '';
+      if (this.userId) {
+        this.store.dispatch(startGetUser({ userId: this.userId }));
+      }
+    });
+
     this.userSubscription = this.store.select(state => state.user)
       .subscribe(userState => {
         this.user = userState.user;
         this.userLoading = userState.loading;
         this.userError = userState.error;
+
+        if (this.user && !this.userLoading && !this.userError) {
+          // Perform actions as needed.
+        }
       });
 
     this.requestSubscription = this.store.select(state => state.request)
@@ -78,12 +89,11 @@ export class RequestComponent implements OnInit, OnDestroy {
         this.request = requestState.request;
         this.requestLoading = requestState.loading;
         this.requestError = requestState.error;
-      });
 
-    this.userId = this.route.snapshot.paramMap.get('userId') ?? '';
-    if (this.userId !== '') {
-      this.store.dispatch(startGetUser({ userId: this.userId }));
-    }
+        if (this.request && !this.requestLoading && !this.requestError) {
+          // Perform actions as needed.
+        }
+      });
   }
 
   ngOnDestroy(): void {
@@ -126,7 +136,7 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     this.location.go(this.route.snapshot.routeConfig?.path ?? '', queryParams.toString());
   }
-  
+
   goToPage(pageName: string): void {
     const navigationExtras: NavigationExtras = {
       queryParamsHandling: 'merge', // Preserve current query params
@@ -137,7 +147,7 @@ export class RequestComponent implements OnInit, OnDestroy {
 
   translateText(text: string): void {
     this.translate.get(text).subscribe((res: string) => {
-      console.log(res);
+      // translate in code
     });
   }
 }
