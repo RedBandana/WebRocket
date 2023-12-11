@@ -1,0 +1,26 @@
+@import '../../../variables.scss';
+
+$container-max-width: 450px;
+
+.privacy-policy-container {
+    line-height: 1.6;
+    background-color: $background-color;
+    padding: 20px;
+    margin: auto;
+    max-width: $container-max-width;
+
+    ul {
+        margin-left: 40px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    h1, h2 {
+        color: #333;
+    }
+    p {
+        color: #555;
+    }
+    a {
+        color: #007bff;
+    }
+}

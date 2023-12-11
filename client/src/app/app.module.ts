@@ -11,6 +11,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { PrivacyPolicyComponent } from './modules/privacy-policy/privacy-policy.component';
+import { TermsOfUseComponent } from './modules/terms-of-use/terms-of-use.component';
 
 // Factory function for HttpLoader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -19,7 +21,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PrivacyPolicyComponent,
+    TermsOfUseComponent,
   ],
   imports: [
     BrowserModule,
