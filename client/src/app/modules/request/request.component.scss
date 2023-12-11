@@ -51,6 +51,7 @@ $requestContainer-max-width: 450px;
         background-color: $color-second;
         max-width: $requestContainer-max-width;
         padding: 5px;
+        margin-top: 5px;
 
         .requestNotifIcon {
             margin: 0 5px;
@@ -90,12 +91,6 @@ $requestContainer-max-width: 450px;
                 height: $input-height;
             }
 
-            input:focus,
-            select:focus {
-                outline: none !important;
-                box-shadow: 0 0 10px $color-second;
-            }
-
             select {
                 width: 100%;
                 height: calc($input-height + 2px);
@@ -127,7 +122,7 @@ $requestContainer-max-width: 450px;
 
     .requestFooter {
         a {
-            margin: 0 5px;
+            padding: 0 5px;
         }
     }
 }

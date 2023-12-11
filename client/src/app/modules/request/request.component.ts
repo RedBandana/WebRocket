@@ -29,7 +29,6 @@ export class RequestComponent implements OnInit, OnDestroy {
 
   requestForm: FormGroup;
   userId: string = '';
-  successMessage: string = '';
   errorMessage: string = '';
 
   constructor(

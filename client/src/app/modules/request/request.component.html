@@ -62,12 +62,12 @@
                 {{ userError }}
             </div>
         </div>
-        <div class="requestNotif requestNotifSuccess" *ngIf="successMessage">
+        <div class="requestNotif requestNotifSuccess" *ngIf="request && !errorMessage">
             <div class="requestNotifIcon">
                 <i class="fa-regular fa-circle-check"></i>
             </div>
             <div class="requestNotifText">
-                {{ successMessage }}
+                An agent will contact you in the next 24&nbsp;h.
             </div>
         </div>
 

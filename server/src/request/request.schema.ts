@@ -4,7 +4,7 @@ export const RequestSchema = new Schema({
     agentId: { type: Schema.Types.ObjectId, ref: 'User' },
     firstName: String,
     lastName: String,
-    email: { type: String, unique: true },
+    email: { type: String, unique: false },
     phone: String,
     mainInterest: { type: String, enum: ['find opportunity', 'improve situation']},
     introducedBy: String,

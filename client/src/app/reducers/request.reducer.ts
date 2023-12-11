@@ -12,6 +12,7 @@ export const requestReducer = createReducer(
   initialState,
   on(RequestActions.startCreateRequest, (state) => ({
     ...state,
+    request: undefined,
     loading: true,
     error: null,
   })),

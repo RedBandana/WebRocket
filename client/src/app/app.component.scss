@@ -5,6 +5,11 @@
     margin: 0;
 }
 
+*:focus {
+    outline: none !important;
+    box-shadow: 0 0 10px $color-second !important;
+}
+
 body {
     font-family: $font-family;
     font-size: 1rem;
