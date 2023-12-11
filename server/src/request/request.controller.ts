@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Controller, Post, Body, HttpException, HttpStatus } from '@nestjs/common';
 import { RequestService } from './request.service';
 import { RequestDTO } from './request.dto';

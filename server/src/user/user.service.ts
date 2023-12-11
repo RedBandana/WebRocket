@@ -14,11 +14,13 @@ export class UserService {
             return null;
         }
         
-        return await this.userModel.findById(userId).exec();
+        const user = await this.userModel.findById(userId).exec();
+        return user;
     }
 
     async getAll(): Promise<User[]> {
-        return await this.userModel.find().exec();
+        const users = await this.userModel.find().exec();
+        return users;
     }
 
     async create(user: UserDTO) {

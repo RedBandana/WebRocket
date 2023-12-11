@@ -7,9 +7,7 @@
 
     <div class="requestAgent">
         <div class="requestAgentProfile">
-            <div *ngIf="user; else rocketlogo">
-                <img [src]="user.profilepictureurl" alt="{{ 'agentPicture' | translate }}">
-            </div>
+            <img *ngIf="user; else rocketlogo" [src]="user.profilepictureurl" alt="{{ 'agentPicture' | translate }}">
             <ng-template #rocketlogo>
                 <img src="https://i.ibb.co/1dmn5Xn/logo.jpg" alt="{{ 'companyLogo' | translate }}">
             </ng-template>

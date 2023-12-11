@@ -1,4 +1,4 @@
-
+import 'dotenv/config';
 import * as nodemailer from 'nodemailer';
 export const mailTransporter = nodemailer.createTransport({
     host: '127.0.0.1',
